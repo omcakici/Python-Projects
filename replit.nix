@@ -1,5 +1,6 @@
 { pkgs }: {
   deps = [
+    pkgs.haskellPackages.keystore
     pkgs.python38Full
   ];
   env = {
