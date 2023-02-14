@@ -24,6 +24,7 @@ RESOURCES = {
     'coffe_amount': 100
 }
 
+from arts import logo
 is_profit = False
 
 def check_resource(coffe_type):
@@ -55,6 +56,7 @@ def check_is_enough_payment(total_payment, coffe_type):
         return True
 
 def game():
+    print(logo)
     coffe_type = input('​What would you like? (espresso/latte/cappuccino): ')
     if coffe_type == 'report':
         return print_resources()

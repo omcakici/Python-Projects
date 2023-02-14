@@ -79,20 +79,21 @@ class BlackJack:
                     self.final_scores()
                     self.game_finished(user_score, computer_score)
             else: 
-                print('its OVER')
                 self.final_scores()
                 self.game_finished(user_score, computer_score)
       
     def game_finished(self, user_score, computer_score):
         if user_score > 21:
             print("You went over. You lose 😭")
-        elif (user_score > computer_score):
-            print("You win 😃")
         elif (user_score == computer_score):
             print("Draw 🙃")
-        elif user_score == 21 and (computer_score > 21 or computer_score < 21):
-            print('You win 😃')
-        elif (computer_score > user_score and computer_score <= 21):
+        elif user_score > 21:
+            print("You went over. You lose 😭")
+        elif computer_score > 21:
+            print("Opponent went over. You win 😁")
+        elif user_score > computer_score:
+            print("You win 😃")
+        else:
             print("You lose 😤")
         
         #Game finished in a sense
@@ -134,18 +135,16 @@ class BlackJack:
         elif c == 10:
           check_plus_ten = True
       return check_ACE and check_plus_ten
-
-
               
 if input("Do you want to play a game of Blackjack? Type 'y' or 'n':") == 'y':
-  cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-  user_choice = list()
-  user_choice.append(random.choice(cards))
-  user_choice.append(random.choice(cards))
-  computer_choice = list()
-  computer_choice.append(random.choice(cards))
-  computer_choice.append(random.choice(cards))
-  Game = BlackJack(user_choice, computer_choice, cards, False, True).play_cards()
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    user_choice = list()
+    user_choice.append(random.choice(cards))
+    user_choice.append(random.choice(cards))
+    computer_choice = list()
+    computer_choice.append(random.choice(cards))
+    computer_choice.append(random.choice(cards))
+    Game = BlackJack(user_choice, computer_choice, cards, False, True).play_cards()
 
 ############### Our Blackjack House Rules #####################
 
