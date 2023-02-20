@@ -49,10 +49,22 @@ class BlackJack:
         self.print_scores()
 
         if self.first_init == True:
-            if self.CHECK_IS_ACE_PLUS_TEN(self.user_choices) == True or self.CHECK_IS_ACE_PLUS_TEN(self.computer_choices) == True:
+            if self.CHECK_IS_ACE_PLUS_TEN(self.user_choices) == True:
                 clear()
                 self.final_scores()
                 print('You Win! BlackJack!!')
+                #Game finished in a sense
+                self.is_over = True
+
+                #At the end ask user if wheter they want to play again!
+                if input("Do you want to play a game of Blackjack? Type 'y' or 'n': ") == 'y':
+                    self.reply_game()
+                else:
+                    return
+            elif self.CHECK_IS_ACE_PLUS_TEN(self.computer_choices) == True:
+                clear()
+                self.final_scores()
+                print('Computer win! BlackJack!!')
                 #Game finished in a sense
                 self.is_over = True
 
@@ -66,7 +78,6 @@ class BlackJack:
         self.first_init = False
         if user_score >= 21:
             self.game_finished(user_score, computer_score)
-        
         else:    
             if self.is_over == False:
                 if input("Type 'y' to get another card, type 'n' to pass: 'y'") == 'y':
