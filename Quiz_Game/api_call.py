@@ -40,7 +40,9 @@ class ApiCall:
     def get_category_data(self):
         for category in category_data_init["trivia_categories"]:
             print(category["name"], "id:", category["id"])
-        category_id = input("-------> FROM LIST ABOVE SELECT CATEGORY, AND INPUT ID's of the category: ")
+        print('--------------------------------')
+        category_id = input("FROM THE LIST ABOVE SELECT CATEGORY ID: ")
+        print('--------------------------------')
         url_category =  f'https://opentdb.com/api_count.php?category={category_id}'
         response_category = requests.get(url_category)
         response_category.raise_for_status() # check for errors
@@ -57,9 +59,10 @@ class ApiCall:
         # For now, only using True/False questions, so that means type should be boolean all the time
 
         # Call an API
+        print('At the below, for selected category it shows how many questions has total and per difficulty level')
         for key, value in self.category_data['category_question_count'].items():
             print(key[6:], '->', value)
-        self.difficulty_level = input("------->Check out above choose with care!!! and select Difficulty (easy/medium/hard): ")
+        self.difficulty_level = input("Select Difficulty (easy/medium/hard): ")
         self.amount = input("Number of Questions: (max=10 for now)")
         url = f'https://opentdb.com/api.php?amount={self.amount}&category={self.category_id}&difficulty={self.diffuclty}&type=boolean'
         response = requests.get(url)

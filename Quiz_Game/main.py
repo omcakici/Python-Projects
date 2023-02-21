@@ -1,9 +1,13 @@
 from question_model import Question
 from api_call import ApiCall
 from quiz_brain import QuizBrain
+from arts import logo
 import random
 
 api_call = ApiCall()
+print(logo)
+print('SELECT CATEGORY ID FROM BELOW:')
+print('--------------------------------')
 api_call.get_category_data()
 category_data = api_call.category_data
 
