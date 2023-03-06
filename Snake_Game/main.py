@@ -1,39 +1,53 @@
 from turtle import Turtle, Screen
+import random
 
-
-class Main:
+class SnakeGame:
     def __init__(self):
-        self.positions = [0, -20, -40]
-        self.snakes = []
+        self.WIDTH, self.HEIGHT = 600, 600
+        self.positions = [(0,0), (-20,0), (-40,0)]
+        self.head = (0, 0)
+        self.apple = self.generate_apple()
+        self.food = (-350, 0)
+        self.segments = []
         self.is_game_on = True
 
-    def init_positions(self):
         for x_pos in self.positions:
             snake = Turtle("square")
-            snake.penup()
             snake.color("white")
-            snake.setpos(x_pos, 0)
+            snake.penup()
+            snake.goto(x_pos)
             snake.pendown()
-            self.snakes.append(snake)
+            self.segments.append(snake)
+
+    def generate_apple(self):
+        x = random.randint(-self.WIDTH/2, self.WIDTH/2)
+        y = random.randint(-self.HEIGHT/2, self.HEIGHT/2)
+        food = Turtle("square")
+        food.hideturtle()
+        food.color("red")
+        food.penup()
+        food.setpos(x, y)
+        food.showturtle()
+        food.pendown()
+        self.food = (x, y)
+
+    def check_boarders(self):
+        print("I will check if its going to crash the board of the grid")
 
     def game_engine(self):
-        counter = 1
-        while self.is_game_on and counter < 10:
-            for snake in self.snakes:
+        while self.is_game_on:
+            for snake in self.segments:
                 snake.penup()
-                new_x = snake.xcor() + 20
-                snake.goto(new_x, snake.ycor())
+                snake.forward(20)
+                self.head = self.segments[0]
                 snake.pendown()
-            
-            counter += 1
 
 screen = Screen()
 screen.setup(600, 600)
 screen.bgcolor("black") #changing the background color
 screen.title("My Snake Game")
 
-main = Main()
-main.init_positions()
+main = SnakeGame()
 main.game_engine()
 
 screen.exitonclick()
